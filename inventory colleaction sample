@@ -1,0 +1,48 @@
+{
+	"itemId" : 1234,
+	"itemCategory" : "Baby Cloths",
+	"itemFor" : "Boy/Girl/Unisex"
+	"itemCode" : "BC_US_123",
+	"itemName" : "Towel",
+	"itemQuantity" : 10,
+	"itemPrice" : 100,
+	"itemSubGroup" : [{
+				"itemId" : 2134,
+				"itemName" : "like color code",
+				"itemImgUrl" : "http://""
+	},{
+				"itemId" : 2134,
+				"itemName" : "like color code",
+				"itemImgUrl" : "http://""
+	}],
+	"itemFeatures" : ["Item feature 1", "Item feature 2", "Item feature 3"],
+	"ageCategory" : {
+		"from":1,
+		"to":3
+	},
+	"stockId" : ST1234",
+	"images" : [{ "imgOrder" : 1,
+			    "imgUrl" : "http://""
+	},{			
+				"imgOrder" : 2,
+			    "imgUrl" : "http://""
+	}],
+	"itemDimention" : {
+			"height" : "1M",
+			"weight" : "250g",
+			"Size"   : "bla"
+	},
+	"technicalDetails" : {
+		"madeFrom" : "Glass",
+		"certifiedBy" : "ISO",
+	},
+	"productDescriptionWithImg" : [{
+		"imageOrder" : 1,
+		"imageDescription" : "some description of Image",
+		"imageURL" : "http://""
+	},{
+		"imageOrder" : 2,
+		"imageDescription" : "some description of Image",
+		"imageURL" : "http://""
+	}]
+}
