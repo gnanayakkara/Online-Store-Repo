@@ -1,0 +1,37 @@
+package com.kidletgift.inventory.model.inventory;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
+
+@Document(collation = "store_inventory")
+@Data
+public class InventoryDoc {
+
+    @Id
+    private String itemId;
+    private String itemCategory;
+    private String itemGender;
+
+    @Indexed(unique = true)
+    private String itemCode;
+
+    @Indexed
+    private String itemName;
+    private Integer itemQuantity;
+    private Double itemPrice;
+    private List<ItemSubGroup> itemSubGroups;
+    private List<String> itemFeatures;
+    private AgeCategory ageCategory;
+    private String stockId;
+    private List<ItemImages> itemImages;
+    private ItemDimension itemDimension;
+    private List<TechnicalDetails> technicalDetails;
+    private List<ItemDescriptionWithImages> itemDescriptionWithImages;
+
+}
