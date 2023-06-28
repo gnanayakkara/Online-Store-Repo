@@ -1,7 +1,7 @@
 {
 	"itemId" : 1234,
 	"itemCategory" : "Baby Cloths",
-	"itemFor" : "Boy/Girl/Unisex"
+	"itemGender" : "Boy/Girl/Unisex",
 	"itemCode" : "BC_US_123",
 	"itemName" : "Towel",
 	"itemQuantity" : 10,
@@ -9,11 +9,11 @@
 	"itemSubGroup" : [{
 				"itemId" : 2134,
 				"itemName" : "like color code",
-				"itemImgUrl" : "http://""
+				"itemImgUrl" : "http://"
 	},{
 				"itemId" : 2134,
 				"itemName" : "like color code",
-				"itemImgUrl" : "http://""
+				"itemImgUrl" : "http://"
 	}],
 	"itemFeatures" : ["Item feature 1", "Item feature 2", "Item feature 3"],
 	"ageCategory" : {
@@ -21,28 +21,31 @@
 		"to":3
 	},
 	"stockId" : ST1234",
-	"images" : [{ "imgOrder" : 1,
-			    "imgUrl" : "http://""
+	"itemImages" : [{ "imgOrder" : 1,
+			    "imgUrl" : "http://"
 	},{			
 				"imgOrder" : 2,
-			    "imgUrl" : "http://""
+			    "imgUrl" : "http://"
 	}],
 	"itemDimention" : {
-			"height" : "1M",
-			"weight" : "250g",
-			"Size"   : "bla"
+			"length" : 1,
+			"width" : 2,
+			"height" : 3,
+			"weight" :4,
+			"sizeMetric" : "cm",
+			"weightMetric" : "g"
 	},
 	"technicalDetails" : {
 		"madeFrom" : "Glass",
 		"certifiedBy" : "ISO",
 	},
-	"productDescriptionWithImg" : [{
+	"itemDescriptionWithImages" : [{
 		"imageOrder" : 1,
 		"imageDescription" : "some description of Image",
-		"imageURL" : "http://""
+		"imageUrl" : "http://"
 	},{
 		"imageOrder" : 2,
 		"imageDescription" : "some description of Image",
-		"imageURL" : "http://""
+		"imageUrl" : "http://"
 	}]
 }

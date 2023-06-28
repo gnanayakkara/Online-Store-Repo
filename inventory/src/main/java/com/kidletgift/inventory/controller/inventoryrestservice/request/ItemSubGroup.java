@@ -1,4 +1,4 @@
-package com.kidletgift.inventory.controller.inventory;
+package com.kidletgift.inventory.controller.inventoryrestservice.request;
 
 import lombok.Getter;
 import lombok.Setter;

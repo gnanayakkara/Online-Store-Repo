@@ -1,4 +1,4 @@
-package com.kidletgift.inventory.controller.inventory;
+package com.kidletgift.inventory.controller.inventoryrestservice.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,11 +7,12 @@ import lombok.Setter;
 @Setter
 public class ItemDimension {
 
+    private Double length;
+    private Double width;
     private Double height;
     private Double weight;
-    private Double size;
 
-    private String heightMetric;
-    private String weightMetric;
     private String sizeMetric;
+    private String weightMetric;
+
 }

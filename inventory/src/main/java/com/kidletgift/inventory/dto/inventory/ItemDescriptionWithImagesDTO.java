@@ -1,11 +1,11 @@
-package com.kidletgift.inventory.controller.inventory;
+package com.kidletgift.inventory.dto.inventory;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ItemDescriptionWithImages {
+public class ItemDescriptionWithImagesDTO {
 
     private Integer imageOrder;
     private String imageDescription;

@@ -1,17 +1,25 @@
-package com.kidletgift.inventory.controller.inventory;
+package com.kidletgift.inventory.model.inventoryDoc;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+@Document("store_inventory")
 @Data
-public class InventoryRequest {
+public class InventoryDoc {
 
+    @Id
+    private String itemId;
     private String itemCategory;
     private String itemGender;
-    @NotNull (message = "Item Code is mandatory")
+
+    @Indexed(unique = true)
     private String itemCode;
+
+    @Indexed
     private String itemName;
     private Integer itemQuantity;
     private Double itemPrice;

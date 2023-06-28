@@ -1,4 +1,4 @@
-package com.kidletgift.inventory.model.inventory;
+package com.kidletgift.inventory.model.inventoryDoc;
 
 import lombok.Getter;
 import lombok.Setter;
