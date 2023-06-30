@@ -1,6 +1,7 @@
 package com.kidletgift.inventory.mapper.inventory;
 
 import com.kidletgift.inventory.controller.inventoryrestservice.request.InventoryRequest;
+import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftItem;
 import com.kidletgift.inventory.dto.inventory.InventoryDTO;
 import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import org.mapstruct.Mapper;
@@ -16,7 +17,7 @@ public interface InventoryMapper {
      * @param inventoryRequest
      * @return
      */
-    InventoryDTO modelToDTO(InventoryRequest inventoryRequest);
+    InventoryDTO RequestToDTO(InventoryRequest inventoryRequest);
 
     /**
      * Get InventoryDoc object to save from InventoryDTO
@@ -24,4 +25,18 @@ public interface InventoryMapper {
      * @return
      */
     InventoryDoc dtoToModel(InventoryDTO inventoryDTO);
+
+    /**
+     * Get InventoryDTO object from InventoryDocument
+     * @param inventoryDoc
+     * @return
+     */
+    InventoryDTO docToDto(InventoryDoc inventoryDoc);
+
+    /**
+     * Get inventoryItem to return to client request
+     * @param inventoryDTO
+     * @return
+     */
+    GiftItem dtoToGiftItem(InventoryDTO inventoryDTO);
 }

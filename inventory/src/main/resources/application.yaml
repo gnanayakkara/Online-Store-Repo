@@ -1,7 +1,20 @@
+server:
+  port: 8090
+
 spring:
   data:
     mongodb:
       uri: "mongodb+srv://admin:admin123@cluster0.twywbtc.mongodb.net/kidlet_online_store"
 
-server:
-  port: 8090
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate :DEBUG
+
+
+
+
