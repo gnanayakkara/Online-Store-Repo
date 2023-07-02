@@ -4,7 +4,8 @@ server:
 spring:
   data:
     mongodb:
-      uri: "mongodb+srv://admin:admin123@cluster0.twywbtc.mongodb.net/kidlet_online_store"
+      uri: "mongodb+srv://admin:admin123@cluster0.twywbtc.mongodb.net/?retryWrites=true&w=majority"
+      database: "kidlet_online_store"
 
 logging:
   level:
@@ -13,8 +14,4 @@ logging:
         data:
           mongodb:
             core:
-              MongoTemplate :DEBUG
-
-
-
-
+              MongoTemplate: DEBUG

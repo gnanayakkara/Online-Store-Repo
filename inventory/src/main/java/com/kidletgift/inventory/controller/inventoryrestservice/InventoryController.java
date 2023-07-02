@@ -5,7 +5,7 @@ import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftIte
 import com.kidletgift.inventory.controller.inventoryrestservice.response.InventoryResponse;
 import com.kidletgift.inventory.mapper.inventory.InventoryMapper;
 import com.kidletgift.inventory.service.inventory.serviceinterface.InventoryService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +16,17 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/inventory")
-@RequiredArgsConstructor
 public class InventoryController {
 
     private InventoryMapper inventoryMapper;
 
     private InventoryService inventoryService;
+
+    @Autowired
+    InventoryController(InventoryMapper inventoryMapper,InventoryService inventoryService){
+        this.inventoryMapper = inventoryMapper;
+        this.inventoryService = inventoryService;
+    }
 
     @PostMapping("/additem")
     public ResponseEntity<InventoryResponse> saveItem(@RequestBody InventoryRequest inventoryRequest) throws Exception {
@@ -51,7 +56,7 @@ public class InventoryController {
     }
 
     @GetMapping("/findItem/{itemName}")
-    public ResponseEntity<InventoryResponse> findGiftItem(String itemName) throws Exception {
+    public ResponseEntity<InventoryResponse> findGiftItem(@PathVariable String itemName) throws Exception {
 
         List<GiftItem> giftItems = new ArrayList<>();
 
