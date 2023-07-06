@@ -12,4 +12,5 @@ public interface CustomInventoryRepository {
      * @return
      */
     public List<InventoryDoc> findItemByRegexpName(String itemName) throws Exception;
+
 }

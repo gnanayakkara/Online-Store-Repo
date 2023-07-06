@@ -5,9 +5,10 @@ import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftIte
 import com.kidletgift.inventory.dto.inventory.InventoryDTO;
 import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import org.mapstruct.Mapper;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface InventoryMapper {
 
     InventoryMapper INSTANCE = Mappers.getMapper(InventoryMapper.class);
@@ -17,7 +18,7 @@ public interface InventoryMapper {
      * @param inventoryRequest
      * @return
      */
-    InventoryDTO RequestToDTO(InventoryRequest inventoryRequest);
+    InventoryDTO requestToDTO(InventoryRequest inventoryRequest);
 
     /**
      * Get InventoryDoc object to save from InventoryDTO

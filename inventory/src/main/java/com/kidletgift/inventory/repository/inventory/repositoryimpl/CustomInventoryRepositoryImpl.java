@@ -7,6 +7,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +20,12 @@ public class CustomInventoryRepositoryImpl implements CustomInventoryRepository 
 
     private final MongoDBConnectionFactory mongoDBConnectionFactory;
 
+    private final MongoTemplate mongoTemplate;
+
     @Autowired
-    CustomInventoryRepositoryImpl(MongoDBConnectionFactory mongoDBConnectionFactory){
+    CustomInventoryRepositoryImpl(MongoDBConnectionFactory mongoDBConnectionFactory, MongoTemplate mongoTemplate){
         this.mongoDBConnectionFactory = mongoDBConnectionFactory;
+        this.mongoTemplate = mongoTemplate;
     }
 
     public MongoCollection<InventoryDoc> getInventoryCollection() throws Exception {
@@ -35,9 +41,14 @@ public class CustomInventoryRepositoryImpl implements CustomInventoryRepository 
 
         List<InventoryDoc> inventoryDocList = new ArrayList<>();
 
-        Bson filter = Filters.regex("itemName",itemName+".");
-        getInventoryCollection().find(filter).into(inventoryDocList);
+        /*Bson filter = Filters.regex("itemName",itemName+".");
+        getInventoryCollection().find(filter).into(inventoryDocList);*/
+
+        Query query = new Query();
+        query.addCriteria(Criteria.where("itemName").regex(itemName+"."));
+        inventoryDocList = mongoTemplate.find(query,InventoryDoc.class);
 
         return inventoryDocList;
     }
+
 }
