@@ -19,5 +19,6 @@ public class GiftItem {
     private GiftItemDimension itemDimension;
     private List<GiftItemTechnicalDetails> technicalDetails;
     private List<GiftItemDescriptionWithImages> itemDescriptionWithImages;
+    private GiftItemStatus itemStatus;
 
 }

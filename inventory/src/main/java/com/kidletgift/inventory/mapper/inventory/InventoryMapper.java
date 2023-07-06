@@ -32,7 +32,7 @@ public interface InventoryMapper {
      * @param inventoryDoc
      * @return
      */
-    InventoryDTO docToDto(InventoryDoc inventoryDoc);
+    InventoryDTO modelToDto(InventoryDoc inventoryDoc);
 
     /**
      * Get inventoryItem to return to client request

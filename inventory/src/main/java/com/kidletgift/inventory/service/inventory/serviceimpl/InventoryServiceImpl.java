@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +56,30 @@ public class InventoryServiceImpl implements InventoryService {
 
         return customInventoryRepository.findItemByRegexpName(itemName)
                 .stream()
-                .map(itemDoc -> inventoryMapper.docToDto(itemDoc))
+                .map(itemDoc -> inventoryMapper.modelToDto(itemDoc))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * @param inventoryDTO
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public InventoryDTO updateGiftItem(InventoryDTO inventoryDTO) throws Exception {
+
+        InventoryDoc inventoryDoc = inventoryRepository.findByItemId(inventoryDTO.getItemId());
+
+        InventoryDoc toBeUpdatedDoc = inventoryMapper.dtoToModel(inventoryDTO);
+
+        //If quantity required to update it should increment instead of update the value
+        if (inventoryDTO.getItemQuantity() != null) {
+            toBeUpdatedDoc.setItemQuantity(inventoryDoc.getItemQuantity() + inventoryDTO.getItemQuantity());
+        }
+
+        //Update the date when status changed
+        //toBeUpdatedDoc.getItemStatus().setStatusUpdatedDate(new Date());
+
+        return inventoryMapper.modelToDto(customInventoryRepository.updateGiftItem(toBeUpdatedDoc));
     }
 }

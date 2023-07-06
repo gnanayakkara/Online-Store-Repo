@@ -3,14 +3,15 @@ package com.kidletgift.inventory.controller.inventoryrestservice;
 import com.kidletgift.inventory.controller.inventoryrestservice.request.InventoryRequest;
 import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftItem;
 import com.kidletgift.inventory.controller.inventoryrestservice.response.InventoryResponse;
+import com.kidletgift.inventory.dto.inventory.InventoryDTO;
 import com.kidletgift.inventory.mapper.inventory.InventoryMapper;
+import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import com.kidletgift.inventory.service.inventory.serviceinterface.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +19,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/inventory")
 public class InventoryController {
 
-    private InventoryMapper inventoryMapper;
+    private final InventoryMapper inventoryMapper;
 
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
     @Autowired
     InventoryController(InventoryMapper inventoryMapper,InventoryService inventoryService){
@@ -31,7 +32,48 @@ public class InventoryController {
     @PostMapping("/additem")
     public ResponseEntity<InventoryResponse> saveItem(@RequestBody InventoryRequest inventoryRequest) throws Exception {
 
-        Boolean isItemSaved = inventoryService.saveInventoryItem(inventoryMapper.RequestToDTO(inventoryRequest));
+        Boolean isItemSaved = inventoryService.saveInventoryItem(inventoryMapper.requestToDTO(inventoryRequest));
+
+        return getInventoryResponseResponseEntity(isItemSaved);
+    }
+
+    @GetMapping("/findItem/{itemName}")
+    public ResponseEntity<InventoryResponse> findGiftItem(@PathVariable String itemName) throws Exception {
+
+        List<GiftItem> giftItems;
+
+        giftItems = inventoryService.findItemByRegexName(itemName)
+                .stream()
+                .map(inventoryMapper::dtoToGiftItem)
+                .collect(Collectors.toList());
+
+        InventoryResponse inventoryResponse = InventoryResponse.builder()
+                .status("00")
+                .giftItems(giftItems)
+                .build();
+
+        return new ResponseEntity<>(inventoryResponse,HttpStatus.OK);
+
+    }
+
+    @PutMapping("/updateItem")
+    public ResponseEntity<InventoryResponse> updateItem(@RequestBody InventoryRequest inventoryRequest) throws Exception {
+
+        InventoryDTO inventoryDTO = inventoryMapper.requestToDTO(inventoryRequest);
+
+        //Update the Gift Item
+        inventoryDTO = inventoryService.updateGiftItem(inventoryDTO);
+
+        InventoryResponse inventoryResponse = InventoryResponse.builder()
+                .status("00")
+                .giftItem(inventoryMapper.dtoToGiftItem(inventoryDTO))
+                .build();
+
+        return new ResponseEntity<InventoryResponse>(inventoryResponse, HttpStatus.CREATED);
+
+    }
+
+    private ResponseEntity<InventoryResponse> getInventoryResponseResponseEntity(Boolean isItemSaved) {
 
         InventoryResponse inventoryResponse = null;
 
@@ -41,7 +83,7 @@ public class InventoryController {
                     .status("00")
                     .build();
 
-            return new ResponseEntity<InventoryResponse>(inventoryResponse,HttpStatus.CREATED);
+            return new ResponseEntity<InventoryResponse>(inventoryResponse, HttpStatus.CREATED);
 
         } else {
 
@@ -53,24 +95,5 @@ public class InventoryController {
 
             return new ResponseEntity<InventoryResponse>(inventoryResponse,HttpStatus.CONFLICT);
         }
-    }
-
-    @GetMapping("/findItem/{itemName}")
-    public ResponseEntity<InventoryResponse> findGiftItem(@PathVariable String itemName) throws Exception {
-
-        List<GiftItem> giftItems = new ArrayList<>();
-
-        giftItems = inventoryService.findItemByRegexName(itemName)
-                .stream()
-                .map(item -> inventoryMapper.dtoToGiftItem(item))
-                .collect(Collectors.toList());
-
-        InventoryResponse inventoryResponse = InventoryResponse.builder()
-                .status("00")
-                .giftItems(giftItems)
-                .build();
-
-        return new ResponseEntity<>(inventoryResponse,HttpStatus.OK);
-
     }
 }

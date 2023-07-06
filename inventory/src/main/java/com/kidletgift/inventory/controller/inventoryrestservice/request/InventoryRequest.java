@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class InventoryRequest {
 
+    private String itemId;
     private String itemCategory;
     private String itemGender;
     @NotNull (message = "Item Code is mandatory")

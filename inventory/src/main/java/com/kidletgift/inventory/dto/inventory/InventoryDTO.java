@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class InventoryDTO {
 
+    private String itemId;
     private String itemCategory;
     private String itemGender;
     private String itemCode;
@@ -21,5 +22,6 @@ public class InventoryDTO {
     private ItemDimensionDTO itemDimension;
     private List<TechnicalDetailsDTO> technicalDetails;
     private List<ItemDescriptionWithImagesDTO> itemDescriptionWithImages;
+    private ItemStatusDTO itemStatus;
 
 }

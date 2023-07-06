@@ -13,4 +13,12 @@ public interface CustomInventoryRepository {
      */
     public List<InventoryDoc> findItemByRegexpName(String itemName) throws Exception;
 
+    /**
+     * Generic update method to update Gift Item
+     * @param inventoryDoc
+     * @return
+     * @throws Exception
+     */
+    public InventoryDoc updateGiftItem(InventoryDoc inventoryDoc) throws Exception;
+
 }

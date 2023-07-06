@@ -7,9 +7,11 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.FindAndReplaceOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,19 @@ public class CustomInventoryRepositoryImpl implements CustomInventoryRepository 
         inventoryDocList = mongoTemplate.find(query,InventoryDoc.class);
 
         return inventoryDocList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public InventoryDoc updateGiftItem(InventoryDoc inventoryDoc) throws Exception {
+
+        Query query = new Query().addCriteria(Criteria.where("_id").is(inventoryDoc.getItemId()));
+        FindAndReplaceOptions options = new FindAndReplaceOptions().upsert();
+
+        return mongoTemplate.findAndReplace(query,inventoryDoc,options,InventoryDoc.class, "store_inventory",InventoryDoc.class);
+
     }
 
 }

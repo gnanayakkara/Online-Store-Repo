@@ -24,4 +24,12 @@ public interface InventoryService {
      * @throws Exception
      */
     public List<InventoryDTO> findItemByRegexName(String itemName) throws Exception;
+
+    /**
+     * Generic update method to update Gift Item
+     * @param inventoryDTO
+     * @return
+     * @throws Exception
+     */
+    public InventoryDTO updateGiftItem(InventoryDTO inventoryDTO) throws Exception;
 }

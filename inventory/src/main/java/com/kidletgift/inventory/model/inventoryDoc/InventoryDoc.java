@@ -31,5 +31,6 @@ public class InventoryDoc {
     private ItemDimension itemDimension;
     private List<TechnicalDetails> technicalDetails;
     private List<ItemDescriptionWithImages> itemDescriptionWithImages;
+    private ItemStatus itemStatus;
 
 }
