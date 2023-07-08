@@ -1,17 +1,15 @@
 package com.kidletgift.inventory.repository.inventory.repositoryimpl;
 
 import com.kidletgift.inventory.config.MongoDBConnectionFactory;
+import com.kidletgift.inventory.exception.GiftItemSaveOrUpdateException;
 import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import com.kidletgift.inventory.repository.inventory.repositoryinterface.CustomInventoryRepository;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
-import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndReplaceOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +55,7 @@ public class CustomInventoryRepositoryImpl implements CustomInventoryRepository 
      * {@inheritDoc}
      */
     @Override
-    public InventoryDoc updateGiftItem(InventoryDoc inventoryDoc) throws Exception {
+    public InventoryDoc updateGiftItem(InventoryDoc inventoryDoc) throws GiftItemSaveOrUpdateException {
 
         Query query = new Query().addCriteria(Criteria.where("_id").is(inventoryDoc.getItemId()));
         FindAndReplaceOptions options = new FindAndReplaceOptions().upsert();

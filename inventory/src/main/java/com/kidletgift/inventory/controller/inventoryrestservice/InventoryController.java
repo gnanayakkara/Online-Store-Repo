@@ -4,6 +4,8 @@ import com.kidletgift.inventory.controller.inventoryrestservice.request.Inventor
 import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftItem;
 import com.kidletgift.inventory.controller.inventoryrestservice.response.InventoryResponse;
 import com.kidletgift.inventory.dto.inventory.InventoryDTO;
+import com.kidletgift.inventory.exception.GiftItemException;
+import com.kidletgift.inventory.exception.GiftItemSaveOrUpdateException;
 import com.kidletgift.inventory.mapper.inventory.InventoryMapper;
 import com.kidletgift.inventory.service.inventory.serviceinterface.InventoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,7 +37,7 @@ public class InventoryController {
     }
 
     @PostMapping("/additem")
-    public ResponseEntity<InventoryResponse> saveItem(@RequestBody InventoryRequest inventoryRequest) throws Exception {
+    public ResponseEntity<InventoryResponse> saveItem(@RequestBody InventoryRequest inventoryRequest) throws GiftItemException {
 
         Boolean isItemSaved = inventoryService.saveInventoryItem(inventoryMapper.requestToDTO(inventoryRequest));
 
@@ -70,7 +72,7 @@ public class InventoryController {
 
     @Operation(summary = "Update item. This function will work like a universal update. Add everything to be update with itemId")
     @PutMapping("/updateItem")
-    public ResponseEntity<InventoryResponse> updateItem(@RequestBody InventoryRequest inventoryRequest) throws Exception {
+    public ResponseEntity<InventoryResponse> updateItem(@RequestBody InventoryRequest inventoryRequest) throws GiftItemException {
 
         InventoryDTO inventoryDTO = inventoryMapper.requestToDTO(inventoryRequest);
 

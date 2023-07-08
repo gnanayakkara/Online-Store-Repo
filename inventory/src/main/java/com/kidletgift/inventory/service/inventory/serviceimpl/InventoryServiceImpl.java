@@ -1,6 +1,9 @@
 package com.kidletgift.inventory.service.inventory.serviceimpl;
 
 import com.kidletgift.inventory.dto.inventory.InventoryDTO;
+import com.kidletgift.inventory.exception.GiftItemException;
+import com.kidletgift.inventory.exception.GiftItemNotFoundException;
+import com.kidletgift.inventory.exception.GiftItemSaveOrUpdateException;
 import com.kidletgift.inventory.mapper.inventory.InventoryMapper;
 import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import com.kidletgift.inventory.repository.inventory.InventoryRepository;
@@ -36,7 +39,7 @@ public class InventoryServiceImpl implements InventoryService {
      * {@inheritDoc}
      */
     @Override
-    public Boolean saveInventoryItem(InventoryDTO inventoryDTO) throws Exception {
+    public Boolean saveInventoryItem(InventoryDTO inventoryDTO) throws GiftItemException {
 
         InventoryDoc inventoryDoc = inventoryRepository.save(inventoryMapper.dtoToModel(inventoryDTO));
 
@@ -66,20 +69,28 @@ public class InventoryServiceImpl implements InventoryService {
      * @throws Exception
      */
     @Override
-    public InventoryDTO updateGiftItem(InventoryDTO inventoryDTO) throws Exception {
+    public InventoryDTO updateGiftItem(InventoryDTO inventoryDTO) throws GiftItemException{
 
         InventoryDoc inventoryDoc = inventoryRepository.findByItemId(inventoryDTO.getItemId());
 
-        InventoryDoc toBeUpdatedDoc = inventoryMapper.dtoToModel(inventoryDTO);
+        if(inventoryDoc != null){
 
-        //If quantity required to update it should increment instead of update the value
-        if (inventoryDTO.getItemQuantity() != null) {
-            toBeUpdatedDoc.setItemQuantity(inventoryDoc.getItemQuantity() + inventoryDTO.getItemQuantity());
+            InventoryDoc toBeUpdatedDoc = inventoryMapper.dtoToModel(inventoryDTO);
+
+            //If quantity required to update it should increment instead of update the value
+            if (inventoryDTO.getItemQuantity() != null) {
+                toBeUpdatedDoc.setItemQuantity(inventoryDoc.getItemQuantity() + inventoryDTO.getItemQuantity());
+            }
+
+            //Update the date when status changed
+            //toBeUpdatedDoc.getItemStatus().setStatusUpdatedDate(new Date());
+
+            return inventoryMapper.modelToDto(customInventoryRepository.updateGiftItem(toBeUpdatedDoc));
+
+        } else {
+            throw new GiftItemNotFoundException("Gift Item not found with item id : " + inventoryDTO.getItemId());
         }
 
-        //Update the date when status changed
-        //toBeUpdatedDoc.getItemStatus().setStatusUpdatedDate(new Date());
 
-        return inventoryMapper.modelToDto(customInventoryRepository.updateGiftItem(toBeUpdatedDoc));
     }
 }

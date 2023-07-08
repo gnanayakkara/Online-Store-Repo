@@ -1,5 +1,6 @@
 package com.kidletgift.inventory.repository.inventory.repositoryinterface;
 
+import com.kidletgift.inventory.exception.GiftItemSaveOrUpdateException;
 import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public interface CustomInventoryRepository {
      * @return
      * @throws Exception
      */
-    public InventoryDoc updateGiftItem(InventoryDoc inventoryDoc) throws Exception;
+    public InventoryDoc updateGiftItem(InventoryDoc inventoryDoc) throws GiftItemSaveOrUpdateException;
 
 }
