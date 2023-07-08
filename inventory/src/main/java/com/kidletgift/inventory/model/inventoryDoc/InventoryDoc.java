@@ -32,5 +32,6 @@ public class InventoryDoc {
     private List<TechnicalDetails> technicalDetails;
     private List<ItemDescriptionWithImages> itemDescriptionWithImages;
     private ItemStatus itemStatus;
+    private Integer reorderLevel;
 
 }

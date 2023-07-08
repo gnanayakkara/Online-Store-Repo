@@ -23,5 +23,6 @@ public class InventoryDTO {
     private List<TechnicalDetailsDTO> technicalDetails;
     private List<ItemDescriptionWithImagesDTO> itemDescriptionWithImages;
     private ItemStatusDTO itemStatus;
+    private Integer reorderLevel;
 
 }

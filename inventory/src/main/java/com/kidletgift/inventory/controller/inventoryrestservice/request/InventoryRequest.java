@@ -24,5 +24,6 @@ public class InventoryRequest {
     private ItemDimension itemDimension;
     private List<TechnicalDetails> technicalDetails;
     private List<ItemDescriptionWithImages> itemDescriptionWithImages;
+    private Integer reorderLevel;
 
 }
