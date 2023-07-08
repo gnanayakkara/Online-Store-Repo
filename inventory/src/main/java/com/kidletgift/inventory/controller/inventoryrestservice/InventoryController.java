@@ -5,8 +5,13 @@ import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftIte
 import com.kidletgift.inventory.controller.inventoryrestservice.response.InventoryResponse;
 import com.kidletgift.inventory.dto.inventory.InventoryDTO;
 import com.kidletgift.inventory.mapper.inventory.InventoryMapper;
-import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import com.kidletgift.inventory.service.inventory.serviceinterface.InventoryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +42,15 @@ public class InventoryController {
         return getInventoryResponseResponseEntity(isItemSaved);
     }
 
+    @Operation(summary = "Get the item/items by Gift Item name")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Found the item or request does not failed.",
+                content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = InventoryResponse.class))})
+    })
     @GetMapping("/findItem/{itemName}")
-    public ResponseEntity<InventoryResponse> findGiftItem(@PathVariable String itemName) throws Exception {
+    public ResponseEntity<InventoryResponse> findGiftItem(@Parameter(description = "Name of Gift Item")
+            @PathVariable String itemName) throws Exception {
 
         List<GiftItem> giftItems;
 
@@ -56,6 +68,7 @@ public class InventoryController {
 
     }
 
+    @Operation(summary = "Update item. This function will work like a universal update. Add everything to be update with itemId")
     @PutMapping("/updateItem")
     public ResponseEntity<InventoryResponse> updateItem(@RequestBody InventoryRequest inventoryRequest) throws Exception {
 
