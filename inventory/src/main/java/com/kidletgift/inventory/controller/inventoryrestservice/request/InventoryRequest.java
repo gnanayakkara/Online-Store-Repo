@@ -1,11 +1,13 @@
 package com.kidletgift.inventory.controller.inventoryrestservice.request;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@Builder
 public class InventoryRequest {
 
     private String itemId;

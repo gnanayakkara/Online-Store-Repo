@@ -5,7 +5,6 @@ import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftIte
 import com.kidletgift.inventory.controller.inventoryrestservice.response.InventoryResponse;
 import com.kidletgift.inventory.dto.inventory.InventoryDTO;
 import com.kidletgift.inventory.exception.GiftItemException;
-import com.kidletgift.inventory.exception.GiftItemSaveOrUpdateException;
 import com.kidletgift.inventory.mapper.inventory.InventoryMapper;
 import com.kidletgift.inventory.service.inventory.serviceinterface.InventoryService;
 import io.swagger.v3.oas.annotations.Operation;
