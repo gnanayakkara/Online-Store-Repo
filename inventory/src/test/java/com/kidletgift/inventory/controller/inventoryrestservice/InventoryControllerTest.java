@@ -2,11 +2,9 @@ package com.kidletgift.inventory.controller.inventoryrestservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kidletgift.inventory.controller.inventoryrestservice.request.*;
+import com.kidletgift.inventory.controller.inventoryrestservice.response.InventoryResponse;
 import com.kidletgift.inventory.repository.inventory.InventoryRepository;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,10 +13,13 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
+import java.io.DataInput;
 import java.util.Arrays;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,14 +28,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Testcontainers
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class InventoryControllerTest {
 
     @Container
-    static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:6.0.6");
+    static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:6.0.6"));
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry dynamicPropertyRegistry){
-        dynamicPropertyRegistry.add("spring.data.mongodb.url",mongoDBContainer::getReplicaSetUrl);
+        mongoDBContainer.start();
+        dynamicPropertyRegistry.add("spring.data.mongodb.uri",mongoDBContainer::getReplicaSetUrl);
     }
 
     @Autowired
@@ -47,6 +50,7 @@ public class InventoryControllerTest {
     private InventoryRepository inventoryRepository;
 
     @Test
+    @Order(1)
     void saveItem() throws Exception {
 
         InventoryRequest inventoryRequest = getGiftItemRequest();
@@ -58,6 +62,18 @@ public class InventoryControllerTest {
                 .andExpect(status().isCreated());
 
         Assertions.assertEquals(1, inventoryRepository.findAll().size());
+    }
+
+    @Test
+    @Order(2)
+    void findGiftItem() throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/inventory/findItem/pki"))
+                .andExpect(status().isOk())
+                .andExpect(result -> {
+                    Assertions.assertNotNull(result.getResponse().getContentLength());
+                    Assertions.assertEquals(1, objectMapper.readValue(result.getResponse().getContentAsString(), InventoryResponse.class).getGiftItems().size());
+                });
     }
 
     @AfterAll
