@@ -5,6 +5,7 @@ import com.kidletgift.inventory.controller.inventoryrestservice.response.GiftIte
 import com.kidletgift.inventory.dto.inventory.InventoryDTO;
 import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
@@ -40,4 +41,11 @@ public interface InventoryMapper {
      * @return
      */
     GiftItem dtoToGiftItem(InventoryDTO inventoryDTO);
+
+    /**
+     * For existing Document update with to be updated values provided by DTO
+     * @param inventoryDoc
+     * @param inventoryDTO
+     */
+    void updateModelWithToBeUpdatedValues(@MappingTarget InventoryDoc inventoryDoc, InventoryDTO inventoryDTO);
 }

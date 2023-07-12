@@ -12,4 +12,11 @@ public interface InventoryRepository extends MongoRepository<InventoryDoc,String
      */
     public InventoryDoc findByItemId(String itemId);
 
+    /**
+     * Find Gift Item by item code
+     * @param itemCode
+     * @return
+     */
+    public InventoryDoc findByItemCode(String itemCode);
+
 }

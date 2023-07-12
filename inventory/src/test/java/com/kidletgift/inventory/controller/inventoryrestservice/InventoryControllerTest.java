@@ -1,8 +1,10 @@
 package com.kidletgift.inventory.controller.inventoryrestservice;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kidletgift.inventory.controller.inventoryrestservice.request.*;
 import com.kidletgift.inventory.controller.inventoryrestservice.response.InventoryResponse;
+import com.kidletgift.inventory.model.inventoryDoc.InventoryDoc;
 import com.kidletgift.inventory.repository.inventory.InventoryRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,9 +73,30 @@ public class InventoryControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/inventory/findItem/pki"))
                 .andExpect(status().isOk())
                 .andExpect(result -> {
-                    Assertions.assertNotNull(result.getResponse().getContentLength());
+                    Assertions.assertNotNull(result.getResponse());
                     Assertions.assertEquals(1, objectMapper.readValue(result.getResponse().getContentAsString(), InventoryResponse.class).getGiftItems().size());
                 });
+    }
+
+    @Test
+    @Order(3)
+    void updateItem() throws Exception {
+
+        InventoryDoc inventoryDoc = inventoryRepository.findByItemCode("G_BS_1234");
+        Assertions.assertNotNull(inventoryDoc);
+
+        InventoryRequest giftItemUpdateRequest = getGiftItemUpdateRequest();
+        giftItemUpdateRequest.setItemId(inventoryDoc.getItemId());
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/inventory/updateItem")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(giftItemUpdateRequest)))
+                .andExpect(status().isCreated())
+                .andExpect(result -> {
+                    Assertions.assertNotNull(result.getResponse());
+                    Assertions.assertNotNull(objectMapper.readValue(result.getResponse().getContentAsString(),InventoryResponse.class).getGiftItem());
+                });
+
     }
 
     @AfterAll
@@ -109,6 +132,17 @@ public class InventoryControllerTest {
                 .technicalDetails(Arrays.asList(TechnicalDetails.builder().key("made from ").value("fabric").build()))
                 .itemDescriptionWithImages(Arrays.asList(ItemDescriptionWithImages.builder()
                         .imageOrder(1).imageDescription("Testing Image").imageUrl("Test URL").build()))
+                .build();
+    }
+
+    private InventoryRequest getGiftItemUpdateRequest(){
+        return InventoryRequest.builder()
+                .itemCategory("Baby Cloths")
+                .itemGender("Boy")
+                .itemCode("G_BS_1234")
+                .itemName("Napkin")
+                .itemQuantity(20)
+                .itemPrice(10.5)
                 .build();
     }
 

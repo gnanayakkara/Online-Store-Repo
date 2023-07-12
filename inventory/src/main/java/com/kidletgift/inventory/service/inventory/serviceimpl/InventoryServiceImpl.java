@@ -72,20 +72,22 @@ public class InventoryServiceImpl implements InventoryService {
     public InventoryDTO updateGiftItem(InventoryDTO inventoryDTO) throws GiftItemException{
 
         InventoryDoc inventoryDoc = inventoryRepository.findByItemId(inventoryDTO.getItemId());
+        Integer itemQuantity = inventoryDoc.getItemQuantity();
 
         if(inventoryDoc != null){
 
-            InventoryDoc toBeUpdatedDoc = inventoryMapper.dtoToModel(inventoryDTO);
+            //Copy to be update values to Document
+            inventoryMapper.updateModelWithToBeUpdatedValues(inventoryDoc,inventoryDTO);
 
             //If quantity required to update it should increment instead of update the value
             if (inventoryDTO.getItemQuantity() != null) {
-                toBeUpdatedDoc.setItemQuantity(inventoryDoc.getItemQuantity() + inventoryDTO.getItemQuantity());
+                inventoryDoc.setItemQuantity(inventoryDoc.getItemQuantity() + itemQuantity);
             }
 
             //Update the date when status changed
             //toBeUpdatedDoc.getItemStatus().setStatusUpdatedDate(new Date());
 
-            return inventoryMapper.modelToDto(customInventoryRepository.updateGiftItem(toBeUpdatedDoc));
+            return inventoryMapper.modelToDto(customInventoryRepository.updateGiftItem(inventoryDoc));
 
         } else {
             throw new GiftItemNotFoundException("Gift Item not found with item id : " + inventoryDTO.getItemId());
