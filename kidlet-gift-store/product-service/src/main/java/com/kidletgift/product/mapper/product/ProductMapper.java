@@ -3,7 +3,7 @@ package com.kidletgift.product.mapper.product;
 import com.kidletgift.product.controller.productrestservice.request.ProductRequest;
 import com.kidletgift.product.controller.productrestservice.response.GiftItem;
 import com.kidletgift.product.dto.product.ProductDTO;
-import com.kidletgift.product.model.productDoc.ProductDoc;
+import com.kidletgift.product.model.productdoc.ProductDoc;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;

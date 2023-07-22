@@ -1,0 +1,33 @@
+{
+
+"userId":"testafa123123dsfa",
+"cartItems":[{
+	"itemId":"",
+	"itemQuantity":3,
+	"itemPrice":123
+}],
+"purchasedHistory":[{
+	"purchasedDate":"2023-01-12",
+	"address" : {
+		"name":"",
+		"streetNumberAndName":"",
+		"apartmentOrUnitAndNumber":"",
+		"building":"",
+		"city":"",
+		"zipCode":""
+	}
+},
+"totalAmount":1234,
+"purchasedItems":[{
+	"productId":"",
+	"quantity":12,
+	"unitAmount":12,
+	"discount":1,
+	"sumAmount":11
+}],
+"isGiftItem":true,
+"giftDetails":{
+	"giftNote":""	
+}
+]
+}

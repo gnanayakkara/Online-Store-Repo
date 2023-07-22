@@ -2,7 +2,7 @@ package com.kidletgift.product.repository.product.repositoryimpl;
 
 import com.kidletgift.product.config.MongoDBConnectionFactory;
 import com.kidletgift.product.exception.GiftItemSaveOrUpdateException;
-import com.kidletgift.product.model.productDoc.ProductDoc;
+import com.kidletgift.product.model.productdoc.ProductDoc;
 import com.kidletgift.product.repository.product.repositoryinterface.CustomProductRepository;
 import com.mongodb.client.MongoCollection;
 import org.springframework.beans.factory.annotation.Autowired;

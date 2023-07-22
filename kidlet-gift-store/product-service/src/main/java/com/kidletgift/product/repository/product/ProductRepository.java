@@ -1,6 +1,6 @@
 package com.kidletgift.product.repository.product;
 
-import com.kidletgift.product.model.productDoc.ProductDoc;
+import com.kidletgift.product.model.productdoc.ProductDoc;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ProductRepository extends MongoRepository<ProductDoc,String> {

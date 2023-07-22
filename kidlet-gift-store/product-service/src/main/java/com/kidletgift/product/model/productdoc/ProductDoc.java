@@ -1,4 +1,4 @@
-package com.kidletgift.product.model.productDoc;
+package com.kidletgift.product.model.productdoc;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
