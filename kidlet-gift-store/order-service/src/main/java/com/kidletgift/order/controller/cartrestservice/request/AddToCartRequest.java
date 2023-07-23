@@ -1,4 +1,4 @@
-package com.kidletgift.order.controller.orderrestservice.request;
+package com.kidletgift.order.controller.cartrestservice.request;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;

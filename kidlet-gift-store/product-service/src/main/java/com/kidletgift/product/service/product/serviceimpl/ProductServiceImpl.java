@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional(readOnly = false, rollbackFor = Exception.class)
+@Transactional(rollbackFor = Exception.class)
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
