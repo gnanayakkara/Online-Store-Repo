@@ -1,5 +1,6 @@
 package com.kidletgift.product.repository.product.repositoryimpl;
 
+import com.kidletgift.product.constants.ProductConstant;
 import com.kidletgift.product.config.MongoDBConnectionFactory;
 import com.kidletgift.product.exception.GiftItemSaveOrUpdateException;
 import com.kidletgift.product.model.productdoc.ProductDoc;
@@ -29,8 +30,9 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
     }
 
     public MongoCollection<ProductDoc> getProductCollection() throws Exception {
-        return mongoDBConnectionFactory.getMongoDB().getCollection("store_product", ProductDoc.class);
+        return mongoDBConnectionFactory.getMongoDB().getCollection(ProductConstant.PRODUCT_COLLECTION, ProductDoc.class);
     }
+
 
     /**
      * Improve this method as a main search for item search and add aggregation pipeline and limit data
@@ -60,7 +62,7 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
         Query query = new Query().addCriteria(Criteria.where("_id").is(productDoc.getItemId()));
         FindAndReplaceOptions options = new FindAndReplaceOptions().upsert();
 
-        return mongoTemplate.findAndReplace(query, productDoc,options, ProductDoc.class, "store_product", ProductDoc.class);
+        return mongoTemplate.findAndReplace(query, productDoc,options, ProductDoc.class, ProductConstant.PRODUCT_COLLECTION, ProductDoc.class);
 
     }
 

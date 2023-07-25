@@ -3,6 +3,8 @@ package com.kidletgift.order.repository;
 import com.kidletgift.order.model.orderdoc.OrderDoc;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Optional;
+
 public interface OrderRepository extends MongoRepository<OrderDoc,String> {
 
     /**
@@ -10,5 +12,5 @@ public interface OrderRepository extends MongoRepository<OrderDoc,String> {
      * @param userId
      * @return
      */
-    public OrderDoc findByUserId(String userId);
+    public Optional<OrderDoc> findByUserId(String userId);
 }
