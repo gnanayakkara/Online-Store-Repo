@@ -5,70 +5,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dacae44-a232-4b2f-8b60-1f77e25c1ee9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/store/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/ProductApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/ServletInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/advice/ApplicationExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/advice/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/config/Configurations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/config/MongoDBConnectionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/request/AgeCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/request/ItemDescriptionWithImages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/request/ItemDimension.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/request/ItemImages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/request/ItemSubGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/request/ProductRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/request/TechnicalDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftAgeCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftItemDescriptionWithImages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftItemDimension.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftItemImages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftItemStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftItemSubGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/GiftItemTechnicalDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/controller/productrestservice/response/ProductResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/AgeCategoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/ItemDescriptionWithImagesDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/ItemDimensionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/ItemImagesDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/ItemStatusDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/ItemSubGroupDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/ProductDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/dto/product/TechnicalDetailsDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/exception/GiftItemException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/exception/GiftItemNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/exception/GiftItemSaveOrUpdateException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/mapper/product/ProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/AgeCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/ItemDescriptionWithImages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/ItemDimension.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/ItemImages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/ItemStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/ItemSubGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/ProductDoc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/model/productDoc/TechnicalDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/repository/product/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/repository/product/repositoryimpl/CustomProductRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/repository/product/repositoryinterface/CustomProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/service/product/serviceimpl/ProductServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/kidletgift/product/service/product/serviceinterface/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/test/java/com/kidletgift/product/ProductApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/test/java/com/kidletgift/product/controller/productrestservice/ProductControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/repository/repositoryimpl/CustomCartRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/repository/repositoryinterface/CustomCartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/InventoryApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/ServletInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/advice/ApplicationExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/advice/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/config/Configurations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/config/MongoDBConnectionFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/InventoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/request/AgeCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/request/InventoryRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/request/ItemDescriptionWithImages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/request/ItemDimension.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/request/ItemImages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/request/ItemSubGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/request/TechnicalDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftAgeCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftItemDescriptionWithImages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftItemDimension.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftItemImages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftItemStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftItemSubGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/GiftItemTechnicalDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/controller/inventoryrestservice/response/InventoryResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/AgeCategoryDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/InventoryDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/ItemDescriptionWithImagesDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/ItemDimensionDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/ItemImagesDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/ItemStatusDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/ItemSubGroupDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/dto/inventory/TechnicalDetailsDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/exception/GiftItemException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/exception/GiftItemNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/exception/GiftItemSaveOrUpdateException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/mapper/inventory/InventoryMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/AgeCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/InventoryDoc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/ItemDescriptionWithImages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/ItemDimension.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/ItemImages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/ItemStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/ItemSubGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/model/inventoryDoc/TechnicalDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/repository/inventory/InventoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/repository/inventory/repositoryimpl/CustomInventoryRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/repository/inventory/repositoryinterface/CustomInventoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/service/inventory/serviceimpl/InventoryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/java/com/kidletgift/inventory/service/inventory/serviceinterface/InventoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/resources/application-dev.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/test/java/com/kidletgift/inventory/InventoryApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory/src/test/java/com/kidletgift/inventory/controller/inventoryrestservice/InventoryControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/controller/cartrestservice/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/controller/cartrestservice/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/mapper/order/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/mapper/order/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/repository/repositoryimpl/CustomOrderRepostitoyImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/repository/repositoryimpl/CustomOrderRepostitoyImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/repository/repositoryinterface/CustomOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/repository/repositoryinterface/CustomOrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/service/cart/serviceimpl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/service/cart/serviceimpl/CartServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +91,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -111,7 +118,7 @@
       <command value="mvn clean verify" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ProductControllerTest">
+  <component name="RunManager" selected="Spring Boot.OrderApplication">
     <configuration name="ProductControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="product-service" />
       <extension name="coverage">
@@ -127,6 +134,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="order-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kidletgift.order.OrderApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kidletgift.order.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProductApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="product-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.kidletgift.product.ProductApplication" />
@@ -136,6 +156,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.OrderApplication" />
         <item itemvalue="JUnit.ProductControllerTest" />
       </list>
     </recent_temporary>
@@ -157,5 +178,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/order-service/src/main/java/com/kidletgift/order/service/cart/serviceimpl/CartServiceImpl.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -6,7 +6,7 @@ import com.kidletgift.order.mapper.cart.CartMapper;
 import com.kidletgift.order.model.orderdoc.CartItem;
 import com.kidletgift.order.model.orderdoc.OrderDoc;
 import com.kidletgift.order.repository.OrderRepository;
-import com.kidletgift.order.repository.repositoryinterface.CustomOrderRepository;
+import com.kidletgift.order.repository.repositoryinterface.CustomCartRepository;
 import com.kidletgift.order.service.cart.serviceinterface.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,22 +23,24 @@ public class CartServiceImpl implements CartService {
 
     private final OrderRepository orderRepository;
 
-    private final CustomOrderRepository customOrderRepository;
+    private final CustomCartRepository customCartRepository;
 
     private final CartMapper cartMapper;
 
     @Autowired
-    CartServiceImpl(OrderRepository orderRepository, CustomOrderRepository customOrderRepository, CartMapper cartMapper) {
+    CartServiceImpl(OrderRepository orderRepository, CustomCartRepository customCartRepository, CartMapper cartMapper) {
         this.orderRepository = orderRepository;
-        this.customOrderRepository = customOrderRepository;
+        this.customCartRepository = customCartRepository;
         this.cartMapper = cartMapper;
     }
 
     @Override
     public CartItemDTO addItemToCart(AddToCartDTO addToCartDTO) throws Exception {
 
-        if (addToCartDTO.getUserId().isBlank()) {//TODO User not logged in, Add to session
+        CartItemDTO cartItemDTO = addToCartDTO.getCartItemDTO();
 
+        if (addToCartDTO.getUserId().isBlank()) {
+            //TODO User not logged in, Add to session
         } else {
 
             Optional<OrderDoc> byUserIdDoc = orderRepository.findByUserId(addToCartDTO.getUserId());
@@ -47,23 +49,33 @@ public class CartServiceImpl implements CartService {
 
                 if (byUserIdDoc.get().getCartItems().isEmpty()) { //check if cart is empty
 
-                    CartItem cartItem = cartMapper.cartItemDTOToCartItem(addToCartDTO.getCartItemDTO());
-                    customOrderRepository.addItemToCart(addToCartDTO.getUserId(),cartItem);
+                    addItemToCart (cartItemDTO,addToCartDTO.getUserId());
 
                 } else { // if cart is not empty
 
                     //check if same item available, if true update item count
-
-                    List<Integer> updatedItem = byUserIdDoc.get().getCartItems().stream()
-                            .filter(cartItem -> cartItem.getItemId().equals(addToCartDTO.getCartItemDTO().getItemId()))
-                            .map(cartItem -> cartItem.getItemQuantity() + 1)
+                    List<CartItem> updatedItem = byUserIdDoc.get().getCartItems().stream()
+                            .filter(cartItem -> cartItem.getItemId().equals(cartItemDTO.getItemId()))
                             .collect(Collectors.toList());
 
-                    customOrderRepository.addItemToCart(addToCartDTO.getUserId(),
-                            cartMapper.cartItemDTOToCartItem(addToCartDTO.getCartItemDTO()));
+                    if (!updatedItem.isEmpty()) { //update the item
+
+                        CartItem cartItem = updatedItem.get(0);
+
+                        boolean isUpdated = customCartRepository
+                                .updateCartItem(addToCartDTO.getUserId(), cartItem, cartItemDTO.getItemQuantity());
+
+                        if (isUpdated) {
+                            cartItemDTO.setItemQuantity(cartItem.getItemQuantity() + cartItemDTO.getItemQuantity());
+                        }
+
+                    } else { //No item found. Add to cart
+
+                        addItemToCart (cartItemDTO,addToCartDTO.getUserId());
+                    }
                 }
-            } else {
-                //Fresh Customer or No previous orders
+
+            } else { //Fresh Customer or No previous orders
 
                 List<CartItem> cartItems = new ArrayList<>();
                 cartItems.add(cartMapper.cartItemDTOToCartItem(addToCartDTO.getCartItemDTO()));
@@ -74,10 +86,20 @@ public class CartServiceImpl implements CartService {
 
                 orderRepository.save(saveOrderDoc);
 
-                return addToCartDTO.getCartItemDTO();
             }
         }
+        return cartItemDTO;
+    }
 
-        return null;
+    /**
+     * Add or Update Item in cart
+     * @param cartItemDTO
+     * @param userId
+     * @throws Exception
+     */
+    private void addItemToCart(CartItemDTO cartItemDTO,String userId) throws Exception {
+
+        CartItem cartItem = cartMapper.cartItemDTOToCartItem(cartItemDTO);
+        customCartRepository.addItemToCart(userId,cartItem);
     }
 }
