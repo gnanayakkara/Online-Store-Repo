@@ -39,7 +39,7 @@ public class CustomCartRepositoryImpl implements CustomCartRepository {
      *
      * @return
      */
-    public boolean updateCartItem(String userId, CartItem cartItem,Integer itemCount) {
+    public boolean updateCartItem(String userId, CartItem cartItem, Integer itemCount) {
 
         Query query = new Query();
         query.addCriteria(new Criteria("userId").is(userId));
@@ -49,5 +49,19 @@ public class CustomCartRepositoryImpl implements CustomCartRepository {
 
         UpdateResult result = mongoTemplate.updateFirst(query, update, OrderDoc.class);
         return result.wasAcknowledged();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean removeItemFromCart(String userId, String itemId) throws Exception {
+
+        UpdateResult updateResult = mongoTemplate.upsert(
+                Query.query(Criteria.where("userId").is(userId)),
+                new Update().pull("cartItems", Query.query(Criteria.where("itemId").is(itemId))),
+                OrderConstant.ORDER_COLLECTION);
+
+        return updateResult.getModifiedCount() > 0 ;
     }
 }

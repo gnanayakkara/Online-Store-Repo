@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AddToCartRequest {
+public class CartRequest {
 
     private String userId;
     @NotNull(message = "Item Id is mandatory")

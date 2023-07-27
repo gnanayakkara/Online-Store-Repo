@@ -21,4 +21,14 @@ public interface CustomCartRepository {
      * @return
      */
     public boolean updateCartItem(String userId, CartItem cartItem,Integer itemCount);
+
+    /**
+     * Remove item from cart
+     *
+     * @param userId
+     * @param itemId
+     * @return
+     * @throws Exception
+     */
+    public Boolean removeItemFromCart(String userId, String itemId) throws Exception;
 }

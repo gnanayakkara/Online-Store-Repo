@@ -1,7 +1,7 @@
 package com.kidletgift.order.mapper.cart;
 
-import com.kidletgift.order.controller.cartrestservice.request.AddToCartRequest;
-import com.kidletgift.order.dto.AddToCartDTO;
+import com.kidletgift.order.controller.cartrestservice.request.CartRequest;
+import com.kidletgift.order.dto.CartDTO;
 import com.kidletgift.order.dto.CartItemDTO;
 import com.kidletgift.order.model.orderdoc.CartItem;
 import org.mapstruct.Mapper;
@@ -16,11 +16,11 @@ public interface CartMapper {
 
     /**
      * Get AddToCartDTO from the AddToCartRequest
-     * @param addToCartRequest
+     * @param cartRequest
      * @return
      */
     @Mapping(target = "cartItemDTO.",source = ".")
-    AddToCartDTO addToCartRequestToAddToCartDTO(AddToCartRequest addToCartRequest);
+    CartDTO cartRequestToCartDTO(CartRequest cartRequest);
 
     /**
      * Get CartItems from DTO for Model Mapping
@@ -28,4 +28,5 @@ public interface CartMapper {
      * @return
      */
     CartItem cartItemDTOToCartItem(CartItemDTO cartItemDTO);
+
 }
