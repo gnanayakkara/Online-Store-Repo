@@ -21,5 +21,7 @@ public class GiftItem {
     private List<GiftItemTechnicalDetails> technicalDetails;
     private List<GiftItemDescriptionWithImages> itemDescriptionWithImages;
     private GiftItemStatus itemStatus;
+    private List<GiftItemOffers> itemOffers;
+    private String itemColor;
 
 }

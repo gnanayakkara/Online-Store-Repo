@@ -24,5 +24,7 @@ public class ProductDTO {
     private List<ItemDescriptionWithImagesDTO> itemDescriptionWithImages;
     private ItemStatusDTO itemStatus;
     private Integer reorderLevel;
+    private List<ItemOffersDTO> itemOffers;
+    private String itemColor;
 
 }

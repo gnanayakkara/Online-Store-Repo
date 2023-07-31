@@ -30,7 +30,9 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
     }
 
     public MongoCollection<ProductDoc> getProductCollection() throws Exception {
-        return mongoDBConnectionFactory.getMongoDB().getCollection(ProductConstant.PRODUCT_COLLECTION, ProductDoc.class);
+
+        return mongoDBConnectionFactory.getMongoDB()
+                .getCollection(ProductConstant.PRODUCT_COLLECTION, ProductDoc.class);
     }
 
 
@@ -62,7 +64,8 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
         Query query = new Query().addCriteria(Criteria.where("_id").is(productDoc.getItemId()));
         FindAndReplaceOptions options = new FindAndReplaceOptions().upsert();
 
-        return mongoTemplate.findAndReplace(query, productDoc,options, ProductDoc.class, ProductConstant.PRODUCT_COLLECTION, ProductDoc.class);
+        return mongoTemplate.findAndReplace(query, productDoc,options, ProductDoc.class,
+                ProductConstant.PRODUCT_COLLECTION, ProductDoc.class);
 
     }
 

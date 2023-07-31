@@ -33,5 +33,7 @@ public class ProductDoc {
     private List<ItemDescriptionWithImages> itemDescriptionWithImages;
     private ItemStatus itemStatus;
     private Integer reorderLevel;
+    private List<ItemOffers> itemOffers;
+    private String itemColor;
 
 }
