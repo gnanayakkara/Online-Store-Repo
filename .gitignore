@@ -35,11 +35,4 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Store
-kidlet-gift-store/.idea/workspace.xml
-.DS_Store
-kidlet-gift-store/.idea/compiler.xml
-kidlet-gift-store/.idea/workspace.xml
-kidlet-gift-store/.idea/workspace.xml
-kidlet-gift-store/.idea/jarRepositories.xml
-.DS_Store
+.idea/
