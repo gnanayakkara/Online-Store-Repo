@@ -1,4 +1,4 @@
-package com.kidletgift.order.model.orderdoc;
+package com.kidletgift.order.model.order;
 
 import lombok.Builder;
 import lombok.Data;

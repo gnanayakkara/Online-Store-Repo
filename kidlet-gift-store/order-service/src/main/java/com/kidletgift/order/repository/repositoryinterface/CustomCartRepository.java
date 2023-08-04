@@ -1,6 +1,6 @@
 package com.kidletgift.order.repository.repositoryinterface;
 
-import com.kidletgift.order.model.orderdoc.CartItem;
+import com.kidletgift.order.model.order.CartItem;
 
 public interface CustomCartRepository {
 

@@ -1,4 +1,4 @@
-package com.kidletgift.order.model.orderdoc;
+package com.kidletgift.order.model.order;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
