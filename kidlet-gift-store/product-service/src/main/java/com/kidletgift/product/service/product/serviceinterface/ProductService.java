@@ -30,4 +30,12 @@ public interface ProductService {
      * @throws Exception
      */
     public ProductDTO updateGiftItem(ProductDTO productDTO) throws GiftItemException;
+
+    /**
+     * Get the item using Item id
+     * @param itemId
+     * @return
+     * @throws GiftItemException
+     */
+    public ProductDTO findItemByItemId(String itemId) throws GiftItemException;
 }

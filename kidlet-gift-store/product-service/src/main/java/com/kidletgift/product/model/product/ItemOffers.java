@@ -1,4 +1,4 @@
-package com.kidletgift.product.model.productdoc;
+package com.kidletgift.product.model.product;
 
 import lombok.Builder;
 import lombok.Data;

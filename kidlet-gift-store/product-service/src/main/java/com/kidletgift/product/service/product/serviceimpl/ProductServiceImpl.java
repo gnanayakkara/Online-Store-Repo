@@ -4,7 +4,7 @@ import com.kidletgift.product.dto.product.ProductDTO;
 import com.kidletgift.product.exception.GiftItemException;
 import com.kidletgift.product.exception.GiftItemNotFoundException;
 import com.kidletgift.product.mapper.product.ProductMapper;
-import com.kidletgift.product.model.productdoc.ProductDoc;
+import com.kidletgift.product.model.product.ProductDoc;
 import com.kidletgift.product.repository.product.ProductRepository;
 import com.kidletgift.product.repository.product.repositoryinterface.CustomProductRepository;
 import com.kidletgift.product.service.product.serviceinterface.ProductService;
@@ -91,6 +91,18 @@ public class ProductServiceImpl implements ProductService {
             throw new GiftItemNotFoundException("Gift Item not found with item id : " + productDTO.getItemId());
         }
 
-
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProductDTO findItemByItemId(String itemId) throws GiftItemException {
+
+        ProductDoc productDoc = productRepository.findByItemId(itemId);
+
+        return productMapper.modelToDto(productDoc);
+    }
+
+
 }

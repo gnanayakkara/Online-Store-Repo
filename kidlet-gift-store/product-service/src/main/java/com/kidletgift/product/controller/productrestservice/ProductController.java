@@ -69,6 +69,24 @@ public class ProductController {
 
     }
 
+    @Operation(summary = "Get the item by itemId")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Found the item or request does not failed.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductResponse.class))})
+    })
+    @GetMapping("/{itemId}")
+    public ResponseEntity<ProductResponse> findGiftItemByItemId(@PathVariable String itemId) throws GiftItemException {
+
+        ProductDTO productDTO = productService.findItemByItemId(itemId);
+        ProductResponse productResponse = ProductResponse.builder()
+                .status("00")
+                .giftItem(productMapper.dtoToGiftItem(productDTO))
+                .build();
+
+        return new ResponseEntity<>(productResponse, HttpStatus.OK);
+    }
+
     @Operation(summary = "Update item. This function will work like a universal update. Add everything to be update with itemId")
     @PutMapping("/updateItem")
     public ResponseEntity<ProductResponse> updateItem(@RequestBody ProductRequest productRequest) throws GiftItemException {

@@ -1,7 +1,7 @@
 package com.kidletgift.product.repository.product.repositoryinterface;
 
 import com.kidletgift.product.exception.GiftItemSaveOrUpdateException;
-import com.kidletgift.product.model.productdoc.ProductDoc;
+import com.kidletgift.product.model.product.ProductDoc;
 
 import java.util.List;
 

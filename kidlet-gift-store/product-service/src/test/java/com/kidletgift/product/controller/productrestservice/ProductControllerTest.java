@@ -3,7 +3,7 @@ package com.kidletgift.product.controller.productrestservice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kidletgift.product.controller.productrestservice.request.*;
 import com.kidletgift.product.controller.productrestservice.response.ProductResponse;
-import com.kidletgift.product.model.productdoc.ProductDoc;
+import com.kidletgift.product.model.product.ProductDoc;
 import com.kidletgift.product.repository.product.ProductRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
