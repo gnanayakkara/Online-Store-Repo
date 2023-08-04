@@ -4,7 +4,7 @@ import com.kidletgift.order.controller.cartrestservice.request.CartRequest;
 import com.kidletgift.order.controller.cartrestservice.response.CartGiftItems;
 import com.kidletgift.order.dto.CartDTO;
 import com.kidletgift.order.dto.CartItemDTO;
-import com.kidletgift.order.model.orderdoc.CartItem;
+import com.kidletgift.order.model.order.CartItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;

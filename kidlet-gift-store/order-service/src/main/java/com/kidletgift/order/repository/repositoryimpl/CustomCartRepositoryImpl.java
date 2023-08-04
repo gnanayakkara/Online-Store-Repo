@@ -1,8 +1,8 @@
 package com.kidletgift.order.repository.repositoryimpl;
 
 import com.kidletgift.order.constants.OrderConstant;
-import com.kidletgift.order.model.orderdoc.CartItem;
-import com.kidletgift.order.model.orderdoc.OrderDoc;
+import com.kidletgift.order.model.order.CartItem;
+import com.kidletgift.order.model.order.OrderDoc;
 import com.kidletgift.order.repository.repositoryinterface.CustomCartRepository;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;

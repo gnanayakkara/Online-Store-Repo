@@ -1,7 +1,6 @@
 package com.kidletgift.order.repository;
 
-import com.kidletgift.order.model.orderdoc.CartItem;
-import com.kidletgift.order.model.orderdoc.OrderDoc;
+import com.kidletgift.order.model.order.OrderDoc;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
