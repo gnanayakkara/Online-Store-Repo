@@ -1,6 +1,7 @@
 package com.kidletgift.order.controller.cartrestservice;
 
 import com.kidletgift.order.controller.cartrestservice.request.CartRequest;
+import com.kidletgift.order.controller.cartrestservice.response.CartGiftItems;
 import com.kidletgift.order.dto.CartDTO;
 import com.kidletgift.order.dto.CartItemDTO;
 import com.kidletgift.order.mapper.cart.CartMapper;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cart")
@@ -29,8 +33,7 @@ public class CartController {
         CartDTO cartDTO = cartMapper.cartRequestToCartDTO(cartRequest);
         CartItemDTO cartItemDTO = cartService.addItemToCart(cartDTO);
 
-        ResponseEntity<CartItemDTO> responseEntity = new ResponseEntity<>(cartItemDTO, HttpStatus.CREATED);
-        return responseEntity;
+        return new ResponseEntity<>(cartItemDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/removeItem")
@@ -43,7 +46,20 @@ public class CartController {
             return new ResponseEntity<>(isRemoved,HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(isRemoved,HttpStatus.CONFLICT);
+        return new ResponseEntity<>(false,HttpStatus.CONFLICT);
+    }
+
+    @GetMapping("/getCart/{userId}")
+    public ResponseEntity<List<CartGiftItems>> getCartDetails (@PathVariable String userId) throws Exception {
+
+        List<CartItemDTO> cartItemList = cartService.getCartItems(userId);
+
+        List<CartGiftItems> cartGiftItems = cartItemList.stream()
+                .map(cartMapper :: cartItemDTOToCartGiftItems)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<List<CartGiftItems>>(cartGiftItems,HttpStatus.OK);
+
     }
 
 }

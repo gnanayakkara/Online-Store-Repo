@@ -3,6 +3,8 @@ package com.kidletgift.order.service.cart.serviceinterface;
 import com.kidletgift.order.dto.CartDTO;
 import com.kidletgift.order.dto.CartItemDTO;
 
+import java.util.List;
+
 public interface CartService {
 
     /**
@@ -21,4 +23,12 @@ public interface CartService {
      * @throws Exception
      */
     public Boolean removeItemFromCart(CartDTO cartDTO) throws Exception;
+
+    /**
+     * Get cart items
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    public List<CartItemDTO> getCartItems(String userId) throws Exception;
 }

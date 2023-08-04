@@ -5,12 +5,15 @@ import com.kidletgift.order.dto.CartItemDTO;
 import com.kidletgift.order.mapper.cart.CartMapper;
 import com.kidletgift.order.model.orderdoc.CartItem;
 import com.kidletgift.order.model.orderdoc.OrderDoc;
+import com.kidletgift.order.repository.CartRepository;
 import com.kidletgift.order.repository.OrderRepository;
 import com.kidletgift.order.repository.repositoryinterface.CustomCartRepository;
 import com.kidletgift.order.service.cart.serviceinterface.CartService;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +25,20 @@ import java.util.stream.Collectors;
 public class CartServiceImpl implements CartService {
 
     private final OrderRepository orderRepository;
-
+    private final CartRepository cartRepository;
     private final CustomCartRepository customCartRepository;
-
     private final CartMapper cartMapper;
+    private final WebClient webClient;
+
 
     @Autowired
-    CartServiceImpl(OrderRepository orderRepository, CustomCartRepository customCartRepository, CartMapper cartMapper) {
+    CartServiceImpl(OrderRepository orderRepository, CartRepository cartRepository, CustomCartRepository customCartRepository,
+                    CartMapper cartMapper, WebClient webClient) {
         this.orderRepository = orderRepository;
+        this.cartRepository = cartRepository;
         this.customCartRepository = customCartRepository;
         this.cartMapper = cartMapper;
+        this.webClient = webClient;
     }
 
     /**
@@ -114,5 +121,20 @@ public class CartServiceImpl implements CartService {
     public Boolean removeItemFromCart(CartDTO cartDTO) throws Exception {
 
         return customCartRepository.removeItemFromCart(cartDTO.getUserId(), cartDTO.getCartItemDTO().getItemId());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CartItemDTO> getCartItems(String userId) throws Exception {
+
+        List<CartItem> cartItems = cartRepository.findCartItemsByUserId(userId).getCartItems();
+
+        List<CartItemDTO> cartItemDTOS = cartItems.stream()
+                .map(cartMapper::cartItemToCartItemDTO)
+                .collect(Collectors.toList());
+
+        return cartItemDTOS;
     }
 }
