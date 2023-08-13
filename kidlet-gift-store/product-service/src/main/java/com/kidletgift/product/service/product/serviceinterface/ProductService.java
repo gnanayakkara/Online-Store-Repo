@@ -38,4 +38,12 @@ public interface ProductService {
      * @throws GiftItemException
      */
     public ProductDTO findItemByItemId(String itemId) throws GiftItemException;
+
+    /**
+     * Get the item using Item id
+     * @param itemIds
+     * @return
+     * @throws GiftItemException
+     */
+    public List<ProductDTO> findItemByItemIdIn(List<String> itemIds) throws GiftItemException;
 }

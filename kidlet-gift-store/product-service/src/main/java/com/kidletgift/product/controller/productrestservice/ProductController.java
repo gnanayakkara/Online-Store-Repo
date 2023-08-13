@@ -87,6 +87,24 @@ public class ProductController {
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get Item list by itemIds.Specially introduce for order service data retrieve")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Found the item or request does not failed.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductResponse.class))})
+    })
+    @GetMapping
+    public ResponseEntity<ProductResponse> findGiftItemByItemIdIn(@RequestParam List<String> itemIds) throws GiftItemException {
+
+        List<ProductDTO> productDTOs = productService.findItemByItemIdIn(itemIds);
+        ProductResponse productResponse = ProductResponse.builder()
+                .status("00")
+                .giftItems(productDTOs.stream().map(productMapper::dtoToGiftItem).collect(Collectors.toList()))
+                .build();
+
+        return new ResponseEntity<>(productResponse, HttpStatus.OK);
+    }
+
     @Operation(summary = "Update item. This function will work like a universal update. Add everything to be update with itemId")
     @PutMapping("/updateItem")
     public ResponseEntity<ProductResponse> updateItem(@RequestBody ProductRequest productRequest) throws GiftItemException {

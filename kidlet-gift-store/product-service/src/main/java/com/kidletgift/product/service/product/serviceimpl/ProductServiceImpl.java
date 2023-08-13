@@ -105,4 +105,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<ProductDTO> findItemByItemIdIn(List<String> itemIds) throws GiftItemException {
+
+        List<ProductDoc> productDoc = productRepository.findByItemIdIn(itemIds);
+
+        return  productDoc.stream().map(productMapper::modelToDto)
+                .collect(Collectors.toList());
+    }
+
+
 }

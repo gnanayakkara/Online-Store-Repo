@@ -8,6 +8,8 @@ import com.kidletgift.order.model.order.OrderDoc;
 import com.kidletgift.order.repository.CartRepository;
 import com.kidletgift.order.repository.OrderRepository;
 import com.kidletgift.order.repository.repositoryinterface.CustomCartRepository;
+import com.kidletgift.order.service.cart.serviceimpl.servicesupport.GiftItem;
+import com.kidletgift.order.service.cart.serviceimpl.servicesupport.ProductResponse;
 import com.kidletgift.order.service.cart.serviceinterface.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -130,9 +132,33 @@ public class CartServiceImpl implements CartService {
 
         List<CartItem> cartItems = cartRepository.findCartItemsByUserId(userId).getCartItems();
 
-        List<CartItemDTO> cartItemDTOS = cartItems.stream()
-                .map(cartMapper::cartItemToCartItemDTO)
-                .collect(Collectors.toList());
+        //If cart is not empty
+        if (!cartItems.isEmpty()) {
+
+            List<CartItemDTO> cartItemDTOS = cartItems.stream()
+                    .map(cartMapper::cartItemToCartItemDTO)
+                    .collect(Collectors.toList());
+
+            List<String> itemIds =  cartItems.stream().map(CartItem::getItemId).toList();
+
+            ProductResponse productResponse = webClient.get()
+                    .uri("http://localhost:8090/product",
+                            uriBuilder -> uriBuilder.queryParam("itemIds", itemIds).build())
+                    .retrieve()
+                    .bodyToMono(ProductResponse.class)
+                    .block();
+
+            if (productResponse != null && productResponse.getStatus().equals("00")) {
+
+                List<GiftItem> giftItems = productResponse.getGiftItems();
+
+                giftItems.stream().forEach();
+
+            } else {
+
+            }
+        }
+
 
         return cartItemDTOS;
     }
