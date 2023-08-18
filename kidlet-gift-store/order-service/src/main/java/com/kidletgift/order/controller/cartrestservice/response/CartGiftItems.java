@@ -10,4 +10,6 @@ public class CartGiftItems {
     private String itemId;
     private Integer itemQuantity;
     private Double itemPrice;
+
+    private PriceChangedDetails priceChangedDetails;
 }

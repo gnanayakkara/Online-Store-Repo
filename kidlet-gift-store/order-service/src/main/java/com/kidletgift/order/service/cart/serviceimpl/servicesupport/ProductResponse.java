@@ -1,14 +1,14 @@
 package com.kidletgift.order.service.cart.serviceimpl.servicesupport;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductResponse {
 
     private String status;

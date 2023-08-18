@@ -13,14 +13,14 @@ public interface CustomCartRepository {
     public void addItemToCart(String userId, CartItem cartItem) throws Exception;
 
     /**
-     * When user add same item to cart, quentity should update
+     * When user add same item to cart, quantity should update
      *
      * @param userId
      * @param cartItem
      * @param  itemCount
      * @return
      */
-    public boolean updateCartItem(String userId, CartItem cartItem,Integer itemCount);
+    public boolean updateCartItemQty(String userId, CartItem cartItem,Integer itemCount);
 
     /**
      * Remove item from cart
@@ -31,4 +31,13 @@ public interface CustomCartRepository {
      * @throws Exception
      */
     public Boolean removeItemFromCart(String userId, String itemId) throws Exception;
+
+    /**
+     * Update cart item price when it was changed in Product service
+     * @param userId
+     * @param cartItem
+     * @return
+     * @throws Exception
+     */
+    public boolean updateCartItemPrice(String userId, CartItem cartItem) throws Exception;
 }

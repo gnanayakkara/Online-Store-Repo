@@ -1,7 +1,9 @@
 package com.kidletgift.order.service.cart.serviceimpl;
 
+import com.kidletgift.order.constants.CartConstant;
 import com.kidletgift.order.dto.CartDTO;
 import com.kidletgift.order.dto.CartItemDTO;
+import com.kidletgift.order.dto.PriceChangedDetailsDTO;
 import com.kidletgift.order.mapper.cart.CartMapper;
 import com.kidletgift.order.model.order.CartItem;
 import com.kidletgift.order.model.order.OrderDoc;
@@ -18,7 +20,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,7 +78,7 @@ public class CartServiceImpl implements CartService {
                         CartItem cartItem = updatedItem.get(0);
 
                         boolean isUpdated = customCartRepository
-                                .updateCartItem(cartDTO.getUserId(), cartItem, cartItemDTO.getItemQuantity());
+                                .updateCartItemQty(cartDTO.getUserId(), cartItem, cartItemDTO.getItemQuantity());
 
                         if (isUpdated) {
                             cartItemDTO.setItemQuantity(cartItem.getItemQuantity() + cartItemDTO.getItemQuantity());
@@ -135,31 +139,67 @@ public class CartServiceImpl implements CartService {
         //If cart is not empty
         if (!cartItems.isEmpty()) {
 
-            List<CartItemDTO> cartItemDTOS = cartItems.stream()
+            Map<String,CartItemDTO> cartItemDTOS = cartItems.stream()
                     .map(cartMapper::cartItemToCartItemDTO)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toMap(CartItemDTO::getItemId, Function.identity()));
 
             List<String> itemIds =  cartItems.stream().map(CartItem::getItemId).toList();
 
-            ProductResponse productResponse = webClient.get()
-                    .uri("http://localhost:8090/product",
-                            uriBuilder -> uriBuilder.queryParam("itemIds", itemIds).build())
-                    .retrieve()
-                    .bodyToMono(ProductResponse.class)
-                    .block();
+            List<GiftItem> giftItems = getGiftItemsListFromProductService(itemIds);
 
-            if (productResponse != null && productResponse.getStatus().equals("00")) {
+            if (cartItemDTOS.size() != giftItems.size()){
+                throw new Exception("All items did not receive from Product service");
+            }
 
-                List<GiftItem> giftItems = productResponse.getGiftItems();
+            for (GiftItem giftItem : giftItems) {
 
-                giftItems.stream().forEach();
+                CartItemDTO cartItemDTO = cartItemDTOS.get(giftItem.getItemId());
 
-            } else {
+                //Update the cart item if price has been changed
+                if (giftItem.getItemPrice() != cartItemDTO.getItemPrice()){
+
+                    CartItem cartItem = CartItem.builder()
+                            .itemId(giftItem.getItemId())
+                            .itemPrice(giftItem.getItemPrice())
+                            .build();
+
+                    Boolean isItemUpdated = customCartRepository.updateCartItemPrice(userId,cartItem);
+
+                    Double beforePrice = cartItemDTO.getItemPrice();
+                    Double afterPrice = giftItem.getItemPrice();
+
+                    PriceChangedDetailsDTO priceChangedDetailDTO = PriceChangedDetailsDTO.builder()
+                            .changedTo(afterPrice > beforePrice ? CartConstant.INCREASED : CartConstant.DECREASED)
+                            .beforePrice(beforePrice)
+                            .afterPrice(giftItem.getItemPrice())
+                            .build();
+
+                    //Update new price and price changed details
+                    cartItemDTO.setPriceChangedDetails(priceChangedDetailDTO);
+                    cartItemDTO.setItemPrice(afterPrice);
+                }
 
             }
+
+            return cartItemDTOS.values().stream().toList();
         }
 
+        return null;
+    }
 
-        return cartItemDTOS;
+    private List<GiftItem> getGiftItemsListFromProductService(List<String> itemIds) throws Exception {
+
+        ProductResponse productResponse = webClient.get()
+                .uri("http://localhost:8090/product",
+                        uriBuilder -> uriBuilder.queryParam("itemIds", itemIds).build())
+                .retrieve()
+                .bodyToMono(ProductResponse.class)
+                .block();
+
+        if (productResponse != null && productResponse.getStatus().equals("00")) {
+            return  productResponse.getGiftItems();
+        } else {
+            throw new Exception("Unable to retrieve Gift Item details from Product Service");
+        }
     }
 }

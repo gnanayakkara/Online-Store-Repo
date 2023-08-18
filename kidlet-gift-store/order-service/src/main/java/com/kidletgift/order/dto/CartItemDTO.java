@@ -10,4 +10,6 @@ public class CartItemDTO {
     private String itemId;
     private Integer itemQuantity;
     private Double itemPrice;
+
+    private PriceChangedDetailsDTO priceChangedDetails;
 }
