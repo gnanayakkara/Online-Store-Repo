@@ -1,4 +1,5 @@
 package com.kidletgift.order.constants;
+
 public class CartConstant {
 
     //Price changed details
